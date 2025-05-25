@@ -3,7 +3,6 @@ from locators.password_recovery_locators import PasswordRecoveryLocators
 from helper import *
 import allure
 
-
 class PasswdRecoveryPage(BasePage):
     @allure.step('Открыть страницу восстановления пароля')
     def navigate_to_recovery_passwd_page(self):
@@ -15,9 +14,9 @@ class PasswdRecoveryPage(BasePage):
         return self.check_displaying_of_element(PasswordRecoveryLocators.input_email)
 
     @allure.step('Ввести email')
-    def send_email(self):
+    def send_email(self, email):
+
         self.wait_visibility_of_element(PasswordRecoveryLocators.input_email)
-        email = create_random_email()
         self.send_keys_to_input(PasswordRecoveryLocators.input_email, email)
 
     @allure.step('Кликнуть на кнопку "Восстановить"')
@@ -31,10 +30,11 @@ class PasswdRecoveryPage(BasePage):
         return self.check_displaying_of_element(PasswordRecoveryLocators.input_password)
 
     @allure.step('Ввести password')
-    def send_password(self):
+    def send_password(self, password):
+
         self.wait_visibility_of_element(PasswordRecoveryLocators.input_password)
-        passwd = create_random_password()
-        self.send_keys_to_input(PasswordRecoveryLocators.input_password, passwd)
+        password = create_random_password()
+        self.send_keys_to_input(PasswordRecoveryLocators.input_password, password)
 
     @allure.step('Кликнуть на иконку глаз в поле ввода пароля')
     def click_on_eye_icon(self):
